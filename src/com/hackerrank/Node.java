@@ -32,6 +32,41 @@ public class Node {
 		return parent;
 	}
 
+	public int numParents() {
+		int p = 0;
+		Node n = this;
+		while (n.getParent() != null) {
+			p++;
+			n = n.parent;
+		}
+		return p;
+	}
+	
+	public int pathTo(Node b) {
+		Node major;
+		Node minor;
+		if (value > b.value) {
+			major = this;
+			minor = b;
+		} else {
+			major = b;
+			minor = this;
+		}
+		int numParents = 1;
+		
+		while (major.parent != null) {
+			numParents++;
+			if (major.parent.value == minor.value) return numParents;
+			major = major.parent;
+		}
+		while (minor.parent != null) {
+			numParents++;
+			minor = minor.parent;
+		}
+		return numParents;
+		
+	}
+
 
 	// TODO remove child?
 
