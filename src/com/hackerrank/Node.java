@@ -1,7 +1,9 @@
 package com.hackerrank;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Node {
 
@@ -52,18 +54,31 @@ public class Node {
 			major = b;
 			minor = this;
 		}
-		int numParents = 1;
+		int numNodes = 2;
+		Set<Integer> parents = new HashSet<Integer>();
+		parents.add(major.value);
 		
 		while (major.parent != null) {
-			numParents++;
-			if (major.parent.value == minor.value) return numParents;
+			if (major.parent.value == minor.value) return numNodes;
+			parents.add(major.parent.value);
+			numNodes++;
 			major = major.parent;
 		}
+		
+		boolean foundCommonNode = false;
 		while (minor.parent != null) {
-			numParents++;
+			if (parents.contains(minor.parent.value)) {
+				if (!foundCommonNode) {
+					foundCommonNode = true;
+				} else {
+					numNodes--;
+				}
+			} else {
+				numNodes++;
+			}
 			minor = minor.parent;
 		}
-		return numParents;
+		return numNodes;
 		
 	}
 
