@@ -48,8 +48,8 @@ public class Solution {
 			Node nodeA = getNode(btree.getRoot(), intArray[0]);
 			Node nodeB = getNode(btree.getRoot(), intArray[1]);
 			int numNodes = nodeA.pathTo(nodeB);
-			System.out.println(line+" - "+numNodes + " - " + (numNodes<=intArray[2]));
-			//System.out.println(nodeA.pathTo(nodeB)<=intArray[2]?"YES":"NO");
+			//System.out.println(line+" - "+numNodes + " - " + (numNodes<=intArray[2]));
+			System.out.println(nodeA.pathTo(nodeB)<=intArray[2]?"YES":"NO");
 			
 			if(totalQueries >= (10^4)) throw new Exception("exceeded maximum number of requests");
 			totalQueries++;
